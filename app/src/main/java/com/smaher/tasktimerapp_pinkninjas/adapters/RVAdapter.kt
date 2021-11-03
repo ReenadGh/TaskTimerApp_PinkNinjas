@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.smaher.tasktimerapp_pinkninjas.MainActivity
-import com.smaher.tasktimerapp_pinkninjas.data.Task
+import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.ItemRowBinding
 
 

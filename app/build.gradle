@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -46,6 +47,14 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview-selection:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+
+    //room
+    implementation "androidx.room:room-runtime:2.3.0"
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    kapt "androidx.room:room-compiler:2.3.0"
+    implementation 'androidx.room:room-common:2.3.0'
+    implementation 'androidx.room:room-ktx:2.3.0'
 
 
     def lifecycle_version = "2.4.0"
