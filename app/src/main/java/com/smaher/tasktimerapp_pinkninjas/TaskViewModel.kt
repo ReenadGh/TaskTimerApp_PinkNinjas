@@ -21,15 +21,15 @@ class TaskViewModel (application: Application) : AndroidViewModel(application){
     }
 
 
-    fun deleteNote(task: Task) = viewModelScope.launch( Dispatchers.IO ){
+    fun deleteTask(task: Task) = viewModelScope.launch( Dispatchers.IO ){
         repository.delete(task)
     }
 
-    fun updateNote(task: Task) = viewModelScope.launch( Dispatchers.IO ){
+    fun updateTask(task: Task) = viewModelScope.launch( Dispatchers.IO ){
         repository.update(task)
     }
 
-    fun addNote(task: Task) = viewModelScope.launch( Dispatchers.IO ){
+    fun addTask(task: Task) = viewModelScope.launch( Dispatchers.IO ){
         repository.insert(task)
     }
 
