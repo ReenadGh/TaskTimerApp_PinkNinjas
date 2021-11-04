@@ -10,5 +10,6 @@ data class Task(
                 val id: Int,
                 var name:String,
                 var description:String,
-                var totalTime:Int) {
-}
+                var image:String,
+                var status:String = "new",
+                var totalTime:Int)

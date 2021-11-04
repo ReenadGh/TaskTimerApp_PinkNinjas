@@ -3,6 +3,33 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_baseline_pause_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_baseline_play_arrow_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_baseline_replay_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/bg_main.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/bottom_bg.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/bottom_box.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/card_bg.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/completed_task_bg.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/ic_baseline_pause_circle_outline_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/ic_baseline_stop_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_add.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_style.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/round_corner_box.xml" value="0.2703125" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_add_task.xml" value="0.264" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_settings.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_statistics.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_completed.xml" value="0.17617753623188406" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_row.xml" value="0.536" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_row_add_task.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_row_tasks.xml" value="0.17300724637681159" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_settings.xml" value="0.1793478260869565" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_pause_24.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
