@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 // this data class will be modified
 @Entity(tableName = "Tasks")
 data class Task(
-               @PrimaryKey(autoGenerate = true)
-                val id: Int,
-                var name:String,
-                var description:String,
-                var image:String,
-                var status:String = "new",
-                var totalTime:Int)
+ @PrimaryKey(autoGenerate = true)
+ val id: Int,
+ var name:String,
+ var description:String,
+ var image: String? =null,
+ var status:String = "new",
+ var totalTime:Int)
