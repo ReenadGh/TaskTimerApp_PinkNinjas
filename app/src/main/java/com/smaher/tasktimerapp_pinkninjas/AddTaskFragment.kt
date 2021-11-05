@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
+import com.smaher.tasktimerapp_pinkninjas.Constants.IMAGES_PLANT
 import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentAddTaskBinding
-import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
+
+import android.widget.RadioGroup
+import androidx.navigation.Navigation
 
 
 class AddTaskFragment : Fragment() {
@@ -35,19 +37,49 @@ class AddTaskFragment : Fragment() {
         _binding = FragmentAddTaskBinding.inflate(inflater, container, false)
         view = binding.root
 
+
+        //check the type of plant
+        var type=IMAGES_PLANT[0]
+        binding.plantPicker.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            // checkedId is the RadioButton selected
+            when(checkedId){
+                R.id.radioPlant1 -> {
+                    type = IMAGES_PLANT[0]
+                    binding.plantImageAdd.setAnimation(type)
+
+                }
+                R.id.radioPlant2 -> {
+                    type = IMAGES_PLANT[1]
+                    binding.plantImageAdd.setAnimation(type)
+                }
+                R.id.radioPlant3 -> {
+                    type = IMAGES_PLANT[2]
+                    binding.plantImageAdd.setAnimation(type)
+                }
+            }
+
+        })
+
         binding.btAdd.setOnClickListener{
             title= binding.taskTitleET
             description= binding.taskDescriptionET
             time= binding.totalTimeET
+
             //if not empty
             if(title.text.isNotBlank()
                 &&description.text.isNotBlank()
                 &&time.text.isNotBlank()){
-                myViewModel.addTask(Task(0,title.text.toString(),description.text.toString(),null,"new",time.text.toString().toInt()))
+                myViewModel.addTask(Task(0,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toInt()))
                 Toast.makeText(this.context,"Task Added successfully",Toast.LENGTH_SHORT).show()
+                Navigation.findNavController(view).navigate(R.id.action_addTaskFragment_to_homeFragment)
             }else
                 Toast.makeText(this.context,"Do not leave them empty!",Toast.LENGTH_SHORT).show()
         }
+
+        binding.btBack.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_addTaskFragment_to_homeFragment)
+        }
+
         return view
     }
 

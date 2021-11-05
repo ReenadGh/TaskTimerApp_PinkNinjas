@@ -11,29 +11,69 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_main">
 
+        <LinearLayout
+            android:id="@+id/llplantPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/cardLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/plantImageAdd"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/plant1"
+                tools:ignore="ImageContrastCheck" />
+
+            <RadioGroup
+                android:id="@+id/plantPicker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/radioPlant1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:textColor="@color/white"
+                    android:text="Dump cane plant" />
+
+                <RadioButton
+                    android:id="@+id/radioPlant2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Snake plant" />
+
+                <RadioButton
+                    android:id="@+id/radioPlant3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Spider plant" />
+            </RadioGroup>
+
+        </LinearLayout>
+
         <ImageButton
-            android:id="@+id/statisticImageButton"
+            android:id="@+id/btBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/ic_baseline_insert_chart_24"
+            android:background="@drawable/ic_baseline_arrow_back"
             android:contentDescription="@string/todo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
-
-        <ImageView
-            android:id="@+id/settingsImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_baseline_settings_24"
-            android:contentDescription="@string/todo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ImageContrastCheck" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -59,7 +99,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/llplantPicker"
+            app:layout_constraintVertical_bias="0.20999998">
 
             <TextView
                 android:id="@+id/tvTaskCard3"
@@ -80,9 +121,9 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:hint="@string/enter_task_title_here"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                tools:ignore="TextContrastCheck"
-                android:importantForAutofill="no" />
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/tvTaskCard2"
@@ -103,9 +144,9 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:hint="@string/enter_task_description_here"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                tools:ignore="TextContrastCheck"
-                android:importantForAutofill="no" />
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/tvTaskCard"
@@ -126,9 +167,33 @@
                 android:ems="10"
                 android:fontFamily="casual"
                 android:hint="@string/enter_total_time_here"
+                android:importantForAutofill="no"
                 android:inputType="number|textPersonName"
-                tools:ignore="TextContrastCheck"
-                android:importantForAutofill="no" />
+                tools:ignore="TextContrastCheck" />
+
+
+                <RadioGroup
+                    android:id="@+id/TimeType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/radioHours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#673AB7"
+                        android:text="Hour" />
+
+                    <RadioButton
+                        android:id="@+id/radioMinutes"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#673AB7"
+                        android:text="Minute" />
+                </RadioGroup>
+
 
             <Button
                 android:id="@+id/btAdd"

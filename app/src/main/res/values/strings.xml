@@ -14,4 +14,6 @@
     <string name="task_2">Task 2</string>
     <string name="ramaining_time">ramaining time:</string>
     <string name="task">Task</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
 </resources>
