@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddTaskFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main">
+
+        <ImageButton
+            android:id="@+id/statisticImageButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_baseline_insert_chart_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/settingsImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_baseline_settings_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bottom_box"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/item_row_style"
+            android:orientation="vertical"
+            android:padding="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvTaskCard3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/task_title"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/taskTitleET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:hint="@string/enter_task_title_here"
+                android:inputType="textPersonName"
+                tools:ignore="TextContrastCheck"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/tvTaskCard2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/task_description"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/taskDescriptionET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:hint="@string/enter_task_description_here"
+                android:inputType="textPersonName"
+                tools:ignore="TextContrastCheck"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:id="@+id/tvTaskCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/total_time"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/totalTimeET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:hint="@string/enter_total_time_here"
+                android:inputType="number|textPersonName"
+                tools:ignore="TextContrastCheck"
+                android:importantForAutofill="no" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/item_row_style"
+                android:backgroundTint="#673AB7"
+                android:fontFamily="casual"
+                android:text="@string/add" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

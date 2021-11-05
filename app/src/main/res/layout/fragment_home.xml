@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main">
+
+        <ImageButton
+            android:id="@+id/statisticImageButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_baseline_insert_chart_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/settingsImageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_baseline_settings_24"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-60dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/characterImageView"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/plant1"
+                tools:ignore="ImageContrastCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/playImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="5dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_baseline_play_circle_outline_24"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/pauseImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/ic_baseline_pause_circle_outline_24"
+                    tools:ignore="ImageContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/stopImageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="@string/todo"
+                    android:padding="4dp"
+                    android:src="@drawable/stop_button"
+                    tools:ignore="ImageContrastCheck" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="240dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/round_timer_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvTimeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/_03_50"
+                android:textColor="@color/white"
+                android:textSize="45sp"
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/tvTaskHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="@string/task_2"
+                android:textColor="#99FFFFFF"
+                android:textSize="25sp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/bottom_box"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardLayout">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+            <TextView
+                android:id="@+id/tvTaskCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/task_2"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTotalTimeCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="casual"
+                android:text="@string/total_time"
+                android:textColor="#8E8E8E"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tvRemainingTimeCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/ramaining_time"
+                android:textColor="#673AB7"
+                android:textSize="15sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
