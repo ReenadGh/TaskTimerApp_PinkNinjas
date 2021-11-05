@@ -35,34 +35,45 @@ class RVAdapter(val mainActivity: MainActivity,val homeFragment: HomeFragment): 
 
         holder.binding.apply {
            tvTask.text = name
-            if (name=="Add Task"){
-                taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_add_task_24))
-                cardView.background= (getDrawable(mainActivity, R.drawable.item_row_add))
-        }}
-
-        holder.itemView.setOnClickListener {
             when (status) { //status = new , active , paused , completed
                 "add" -> {
                     holder.binding.apply {
                         taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_add_task_24))
                         cardView.background= (getDrawable(mainActivity, R.drawable.item_row_add))
-                        Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
                     }}
                 "completed" -> {
                     holder.binding.apply {
                         taskImageView.setImageDrawable(
                             getDrawable(
                                 mainActivity,
-                                R.drawable.ic_baseline_add_task_24
+                                R.drawable.ic_baseline_check_circle_24
                             )
                         )
                         cardView.background = (getDrawable(mainActivity, R.drawable.completed_task_bg))
-                        Navigation.findNavController(homeFragment.requireView())
-                            .navigate(R.id.action_homeFragment_to_addTaskFragment)
+
                     } }
                 else -> {
-
+                    holder.binding.apply {
+                        taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_play_circle_outline_24))
+                        tvTask.setTextColor(mainActivity.resources.getColor(R.color.purple_200))
+                        cardView.background = (getDrawable(mainActivity, R.drawable.item_row_style))
+                    }
                 }
+            }
+        }
+
+        holder.itemView.setOnClickListener {
+            when (status) { //status = new , active , paused , completed
+                "add" -> {
+                    Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
+                }
+                "completed" -> {
+                    Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_settingsFragment)
+                }
+                else ->  {
+                    Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_settingsFragment)
+                }
+
             }
         }
 
