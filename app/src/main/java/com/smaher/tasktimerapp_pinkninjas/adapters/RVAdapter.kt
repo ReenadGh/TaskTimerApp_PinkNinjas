@@ -13,14 +13,13 @@ import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.ItemRowBinding
 
 
-class RVAdapter(val mainActivity: MainActivity,val homeFragment: HomeFragment): RecyclerView.Adapter<RVAdapter.ItemViewHolder>() {
+class RVAdapter(private val mainActivity: MainActivity, private val homeFragment: HomeFragment): RecyclerView.Adapter<RVAdapter.ItemViewHolder>() {
     class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 
     var addTask = Task(0,"Add Task","hello","plant1","add",30)
     var tasks = arrayListOf<Task>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        tasks.add(addTask)
         return ItemViewHolder(
             ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )

@@ -39,7 +39,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-60dp"
+            android:layout_marginTop="-65dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/characterImageView"
                 android:layout_width="150dp"
-                android:layout_height="140dp"
+                android:layout_height="135dp"
                 app:lottie_autoPlay="true"
                 app:lottie_loop="true"
                 app:lottie_rawRes="@raw/plant1"
@@ -63,8 +63,8 @@
 
                 <ImageView
                     android:id="@+id/playImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_marginEnd="5dp"
                     android:contentDescription="@string/todo"
                     android:src="@drawable/ic_baseline_play_circle_outline_24"
@@ -72,16 +72,16 @@
 
                 <ImageView
                     android:id="@+id/pauseImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:contentDescription="@string/todo"
                     android:src="@drawable/ic_baseline_pause_circle_outline_24"
                     tools:ignore="ImageContrastCheck" />
 
                 <ImageView
                     android:id="@+id/stopImageView"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:contentDescription="@string/todo"
                     android:padding="4dp"
                     android:src="@drawable/stop_button"
@@ -93,7 +93,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="240dp"
             android:layout_height="200dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/round_timer_bg"
             android:gravity="center"
             android:orientation="vertical"
@@ -125,37 +125,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/bottom_box"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardLayout">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/cardLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -176,7 +145,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="@string/task_2"
                 android:textColor="#673AB7"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -187,7 +156,7 @@
                 android:fontFamily="casual"
                 android:text="@string/total_time"
                 android:textColor="#8E8E8E"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/tvRemainingTimeCard"
@@ -203,6 +172,42 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rvLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bottom_box"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardLayout">
+
+            <LinearLayout
+                android:id="@+id/expandLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvExpand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_baseline_keyboard_double_arrow_up_24"
+                    android:backgroundTint="@color/purple_200"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvList"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
