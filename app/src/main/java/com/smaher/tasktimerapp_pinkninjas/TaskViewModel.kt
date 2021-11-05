@@ -3,6 +3,7 @@ package com.smaher.tasktimerapp_pinkninjas
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.database.TaskDatabase
@@ -19,7 +20,6 @@ class TaskViewModel (application: Application) : AndroidViewModel(application){
         repository = TaskRepository(dao)
         tasks = repository.getTasks
     }
-
 
     fun deleteTask(task: Task) = viewModelScope.launch( Dispatchers.IO ){
         repository.delete(task)

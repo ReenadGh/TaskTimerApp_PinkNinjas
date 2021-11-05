@@ -1,13 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsFragment">
 
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@drawable/bg_main">
+
+        <LinearLayout
+            android:id="@+id/llplantPicker_UD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/cardLayout_UD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/plantImageAdd_UD"
+                android:layout_width="150dp"
+                android:layout_height="140dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/plant1"
+                tools:ignore="ImageContrastCheck" />
+
+            <RadioGroup
+                android:id="@+id/plantPicker_UD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:id="@+id/radioPlant1_UD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:textColor="@color/white"
+                    android:text="Dump cane plant" />
+
+                <RadioButton
+                    android:id="@+id/radioPlant2_UD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Snake plant" />
+
+                <RadioButton
+                    android:id="@+id/radioPlant3_UD"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Spider plant" />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btBack_UD"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_baseline_arrow_back"
+            android:contentDescription="@string/todo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck,DuplicateSpeakableTextCheck,ImageContrastCheck" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3_UD"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bottom_box"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardLayout_UD"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/item_row_style"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llplantPicker_UD"
+            app:layout_constraintVertical_bias="0.20999998">
+
+            <TextView
+                android:id="@+id/tvTaskCard3_UD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/task_title"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/taskTitleET_UD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:hint="@string/enter_task_title_here"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/tvTaskCard2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/task_description"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/taskDescriptionET_UD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:hint="@string/enter_task_description_here"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/tvTaskCard_UD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/total_time"
+                android:textColor="#673AB7"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/totalTimeET_UD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:ems="10"
+                android:fontFamily="casual"
+                android:hint="@string/enter_total_time_here"
+                android:importantForAutofill="no"
+                android:inputType="number|textPersonName"
+                tools:ignore="TextContrastCheck" />
+
+
+            <RadioGroup
+                android:id="@+id/TimeType_UD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/radioHoursUD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#673AB7"
+                    android:text="Hour" />
+
+                <RadioButton
+                    android:id="@+id/radioMinutes_UD"
+                    android:checked="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#673AB7"
+                    android:text="Minute" />
+            </RadioGroup>
+
+
+            <Button
+                android:id="@+id/btUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/item_row_style"
+                android:backgroundTint="#673AB7"
+                android:fontFamily="casual"
+                android:text="@string/update" />
+            <Button
+                android:id="@+id/btDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/item_row_style"
+                android:backgroundTint="#673AB7"
+                android:fontFamily="casual"
+                android:text="@string/delete" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>

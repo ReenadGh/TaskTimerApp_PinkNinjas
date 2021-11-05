@@ -1,10 +1,11 @@
 package com.smaher.tasktimerapp_pinkninjas.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.smaher.tasktimerapp_pinkninjas.HomeFragment
 import com.smaher.tasktimerapp_pinkninjas.MainActivity
@@ -16,7 +17,7 @@ import com.smaher.tasktimerapp_pinkninjas.databinding.ItemRowBinding
 class RVAdapter(private val mainActivity: MainActivity, private val homeFragment: HomeFragment): RecyclerView.Adapter<RVAdapter.ItemViewHolder>() {
     class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
 
-    var addTask = Task(0,"Add Task","hello","plant1","add",30)
+    var addTask = Task(0,"Add Task","hello",null,"add",30)
     var tasks = arrayListOf<Task>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -67,10 +68,15 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
                 }
                 "completed" -> {
-                    Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_settingsFragment)
+                    val bundle = Bundle()
+                    bundle.putSerializable("passed_task",tasks[position])
+                    homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
                 }
                 else ->  {
-                    Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_settingsFragment)
+                    val bundle = Bundle()
+                    bundle.putSerializable("passed_task",tasks[position])
+                   homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
+
                 }
 
             }
@@ -81,10 +87,10 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     override fun getItemCount() = tasks.size
 
 
-    fun update(notesList: List<Task>) {
+    fun update(taskList: List<Task>) {
         tasks.clear()
         tasks.add(addTask)
-        tasks.addAll(notesList)
+        tasks.addAll(taskList)
         notifyDataSetChanged()
     }
 }

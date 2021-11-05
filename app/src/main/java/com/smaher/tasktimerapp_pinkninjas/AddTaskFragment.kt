@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,7 @@ import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentAddTaskBinding
 
 import android.widget.RadioGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 
 
@@ -71,6 +73,7 @@ class AddTaskFragment : Fragment() {
                 &&time.text.isNotBlank()){
                 myViewModel.addTask(Task(0,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toInt()))
                 Toast.makeText(this.context,"Task Added successfully",Toast.LENGTH_SHORT).show()
+                hideKeyboard()
                 Navigation.findNavController(view).navigate(R.id.action_addTaskFragment_to_homeFragment)
             }else
                 Toast.makeText(this.context,"Do not leave them empty!",Toast.LENGTH_SHORT).show()
@@ -83,6 +86,12 @@ class AddTaskFragment : Fragment() {
         return view
     }
 
+    fun hideKeyboard()
+    {
+        // Hide Keyboard
+        val hideKeyboard = ContextCompat.getSystemService( requireContext(), InputMethodManager::class.java)
+        hideKeyboard?.hideSoftInputFromWindow( getActivity()?.currentFocus?.windowToken, 0)
+    }
 
 
 }
