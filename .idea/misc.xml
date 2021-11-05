@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/bg_main.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/bottom_box.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/card_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/completed_task_bg.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_add.xml" value="0.3828125" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_style.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_add_task.xml" value="0.3776041666666667" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_completed.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_row.xml" value="0.1388888888888889" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_baseline_pause_24.xml" value="0.2703125" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_baseline_play_arrow_24.xml" value="0.2703125" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable-v24/ic_baseline_replay_24.xml" value="0.2703125" />
