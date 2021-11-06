@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -49,67 +50,59 @@ class EditFragment : Fragment() {
             //check the type of plant
             var type = task!!.image
 
-            //binding.plantPickerUD.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
-                // checkedId is the RadioButton selected
-//                when (checkedId) {
-//                    R.id.radioPlant1 -> {
-//                        type = Constants.IMAGES_PLANT[0]
-//                        binding.plantImageAddUD.setAnimation(type!!)
-//
-//                    }
-//                    R.id.radioPlant2 -> {
-//                        type = Constants.IMAGES_PLANT[1]
-//                        binding.plantImageAddUD.setAnimation(type!!)
-//                    }
-//                    R.id.radioPlant3 -> {
-//                        type = Constants.IMAGES_PLANT[2]
-//                        binding.plantImageAddUD.setAnimation(type!!)
-//                    }
+        binding.plantPickerSPinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                when(position){
+                    0 -> {
+                        type = Constants.IMAGES_PLANT[0]
+                        binding.plantImageAdd.setAnimation(type!!)
+
+                    }
+                    1 -> {
+                        type = Constants.IMAGES_PLANT[1]
+                        binding.plantImageAdd.setAnimation(type!!)
+                    }
+                    2 -> {
+                        type = Constants.IMAGES_PLANT[2]
+                        binding.plantImageAdd.setAnimation(type!!)
+                    }
                 }
-
-            })
-            //set edit text to current data
-            binding.taskTitleETUD.setText(task.name)
-            binding.taskDescriptionETUD.setText(task.description)
-            binding.totalTimeETUD.setText(task.totalTime.toString())
-
-            binding.btUpdate.setOnClickListener {
-                title = binding.taskTitleETUD
-                description = binding.taskDescriptionETUD
-                time = binding.totalTimeETUD
-
-                //if not empty
-                if (title.text.isNotBlank()
-                    && description.text.isNotBlank()
-                    && time.text.isNotBlank()
-                ) {
-                    myViewModel.updateTask(
-                        Task(
-                            task.id,
-                            title.text.toString(),
-                            description.text.toString(),
-                            type,
-                            task.status,
-                            time.text.toString().toInt()
-                        )
-                    )
-                    Toast.makeText(this.context, "Task Updates successfully", Toast.LENGTH_SHORT)
-                        .show()
-                    hideKeyboard()
-                    findNavController().navigate(R.id.action_settingsFragment_to_homeFragment)
-                } else
-                    Toast.makeText(this.context, "Do not leave them empty!", Toast.LENGTH_SHORT)
-                        .show()
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+        //set edit text to current data
+        binding.taskTitleETUD.setText(task.name)
+        binding.taskDescriptionETUD.setText(task.description)
+        binding.totalTimeETUD.setText(task.totalTime.toString())
+
+        binding.btUpdate.setOnClickListener{
+            title= binding.taskTitleETUD
+            description= binding.taskDescriptionETUD
+            time= binding.totalTimeETUD
+
+            //if not empty
+            if(title.text.isNotBlank()
+                &&description.text.isNotBlank()
+                &&time.text.isNotBlank()){
+                myViewModel.updateTask(Task(0,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toInt()))
+                Toast.makeText(this.context,"Task Added successfully",Toast.LENGTH_SHORT).show()
+                hideKeyboard()
+                Navigation.findNavController(view).navigate(R.id.action_editFragment_to_homeFragment)
+            }else
+                Toast.makeText(this.context,"Do not leave them empty!",Toast.LENGTH_SHORT).show()
+        }
 
             binding.btDelete.setOnClickListener {
                 myViewModel.deleteTask(task)
-                findNavController().navigate(R.id.action_settingsFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_editFragment_to_homeFragment)
                 Toast.makeText(this.context, "Deleted Successfully!", Toast.LENGTH_SHORT)
                     .show()
             }
             binding.btBackUD.setOnClickListener {
-                findNavController().navigate(R.id.action_settingsFragment_to_homeFragment)
+                findNavController().navigate(R.id.action_editFragment_to_homeFragment)
             }
 
         return view

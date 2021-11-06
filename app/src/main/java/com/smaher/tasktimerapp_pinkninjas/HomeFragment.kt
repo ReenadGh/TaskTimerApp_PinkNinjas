@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
+import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -30,6 +32,7 @@ class HomeFragment : Fragment() {
     var START_MILLI_SECONDS = 60000L
     var time_in_milli_seconds = 60000L
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,11 +42,21 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         view = binding.root
 
+        /*when the fragment get the ViewModelProvider, it received the same
+        SharedViewModel instance,*/
+        myViewModel = ViewModelProvider(requireActivity()).get(TaskViewModel::class.java)
+
+        //we get the list of tasks from the database
+        myViewModel.tasks.observe(viewLifecycleOwner, {list->
+            list?.let { rvAdapter.update(it) }
+        })
+
+
         //play and pause toggle on click
         binding.playImageView.setOnClickListener{
             paused = if (paused){
                 binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
-                startTimer(START_MILLI_SECONDS)
+                startTimer( START_MILLI_SECONDS)
                 false
             }else{
                 binding.playImageView.setImageResource(R.drawable.pause_button)
@@ -52,6 +65,7 @@ class HomeFragment : Fragment() {
             }
 
         }
+
 
         // recyclerview moving up & down
         binding.expandLayout.setOnClickListener{
@@ -92,15 +106,6 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_statisticsFragment)
         }
 
-        /*when the fragment get the ViewModelProvider, it received the same
-         SharedViewModel instance,*/
-        myViewModel = ViewModelProvider(requireActivity()).get(TaskViewModel::class.java)
-
-        //we get the list of tasks from the database
-        myViewModel.tasks.observe(viewLifecycleOwner, {list->
-            list?.let { rvAdapter.update(it) }
-        })
-
         setRV()
 
         return view
@@ -110,6 +115,7 @@ class HomeFragment : Fragment() {
         rvAdapter = RVAdapter( requireContext() as MainActivity,this)
         binding.rvList.adapter = rvAdapter
         binding.rvList.layoutManager = GridLayoutManager(context,3)
+
     }
 
     private fun startTimer(time_in_seconds: Long) {
