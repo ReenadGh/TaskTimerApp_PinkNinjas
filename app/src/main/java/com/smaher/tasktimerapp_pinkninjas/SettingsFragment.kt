@@ -50,21 +50,21 @@ class SettingsFragment : Fragment() {
 
             binding.plantPickerUD.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 // checkedId is the RadioButton selected
-                when (checkedId) {
-                    R.id.radioPlant1 -> {
-                        type = Constants.IMAGES_PLANT[0]
-                        binding.plantImageAddUD.setAnimation(type!!)
-
-                    }
-                    R.id.radioPlant2 -> {
-                        type = Constants.IMAGES_PLANT[1]
-                        binding.plantImageAddUD.setAnimation(type!!)
-                    }
-                    R.id.radioPlant3 -> {
-                        type = Constants.IMAGES_PLANT[2]
-                        binding.plantImageAddUD.setAnimation(type!!)
-                    }
-                }
+//                when (checkedId) {
+//                    R.id.radioPlant1 -> {
+//                        type = Constants.IMAGES_PLANT[0]
+//                        binding.plantImageAddUD.setAnimation(type!!)
+//
+//                    }
+//                    R.id.radioPlant2 -> {
+//                        type = Constants.IMAGES_PLANT[1]
+//                        binding.plantImageAddUD.setAnimation(type!!)
+//                    }
+//                    R.id.radioPlant3 -> {
+//                        type = Constants.IMAGES_PLANT[2]
+//                        binding.plantImageAddUD.setAnimation(type!!)
+//                    }
+//                }
 
             })
             //set edit text to current data

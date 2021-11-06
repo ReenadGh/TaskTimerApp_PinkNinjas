@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -42,25 +43,30 @@ class AddTaskFragment : Fragment() {
 
         //check the type of plant
         var type=IMAGES_PLANT[0]
-        binding.plantPicker.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
-            // checkedId is the RadioButton selected
-            when(checkedId){
-                R.id.radioPlant1 -> {
-                    type = IMAGES_PLANT[0]
-                    binding.plantImageAdd.setAnimation(type)
+        binding.plantPicker.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                when(position){
+                   0 -> {
+                        type = IMAGES_PLANT[0]
+                        binding.plantImageAdd.setAnimation(type)
 
-                }
-                R.id.radioPlant2 -> {
-                    type = IMAGES_PLANT[1]
-                    binding.plantImageAdd.setAnimation(type)
-                }
-                R.id.radioPlant3 -> {
-                    type = IMAGES_PLANT[2]
-                    binding.plantImageAdd.setAnimation(type)
+                    }
+                    1 -> {
+                        type = IMAGES_PLANT[1]
+                        binding.plantImageAdd.setAnimation(type)
+                    }
+                    2 -> {
+                        type = IMAGES_PLANT[2]
+                        binding.plantImageAdd.setAnimation(type)
+                    }
                 }
             }
 
-        })
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+
 
         binding.btAdd.setOnClickListener{
             title= binding.taskTitleET

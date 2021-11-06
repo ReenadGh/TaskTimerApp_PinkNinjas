@@ -2,20 +2,20 @@ package com.smaher.tasktimerapp_pinkninjas
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
-import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentAddTaskBinding
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
 
 
 class HomeFragment : Fragment() {
@@ -28,6 +28,11 @@ class HomeFragment : Fragment() {
     //declare tasks view model
     lateinit var myViewModel: TaskViewModel
     var toggle = true
+    var paused = true
+    lateinit var countdown_timer :CountDownTimer
+    var START_MILLI_SECONDS = 60000L
+    var time_in_milli_seconds = 60000L
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +42,21 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         view = binding.root
 
+        //play and pause toggle on click
+        binding.playImageView.setOnClickListener{
+            paused = if (paused){
+                binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+                startTimer(START_MILLI_SECONDS)
+                false
+            }else{
+                binding.playImageView.setImageResource(R.drawable.pause_button)
+                countdown_timer.cancel()
+                true
+            }
+
+        }
+
+        // recyclerview moving up & down
         binding.expandLayout.setOnClickListener{
             if(toggle){
                 binding.tvExpand.setBackgroundResource(R.drawable.ic_baseline_keyboard_double_arrow_up_24)
@@ -89,6 +109,36 @@ class HomeFragment : Fragment() {
         rvAdapter = RVAdapter( requireContext() as MainActivity,this)
         binding.rvList.adapter = rvAdapter
         binding.rvList.layoutManager = GridLayoutManager(context,3)
+    }
+
+    private fun startTimer(time_in_seconds: Long) {
+        countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
+            override fun onFinish() {
+                loadConfetti()
+            }
+
+            override fun onTick(p0: Long) {
+                time_in_milli_seconds = p0
+                val seconds = (time_in_milli_seconds / 1000) % 60
+                binding.tvTimeHeader.text = "00:$seconds"
+            }
+        }
+        countdown_timer.start()
+    }
+
+    private fun loadConfetti() {
+        //restart the seconds count
+        time_in_milli_seconds = START_MILLI_SECONDS
+        binding.myConfetti.build()
+            .addColors(Color.RED, Color.WHITE, Color.MAGENTA, Color.YELLOW)
+            .setDirection(0.0, 359.0)
+            .setSpeed(1f, 5f)
+            .setFadeOutEnabled(true)
+            .setTimeToLive(2000L)
+            .addShapes(Shape.RECT, Shape.CIRCLE)
+            .addSizes(Size(12))
+            .setPosition(-50f, binding.myConfetti.width + 50f, -50f, -50f)
+            .streamFor(300, 5000L)
     }
 
 }
