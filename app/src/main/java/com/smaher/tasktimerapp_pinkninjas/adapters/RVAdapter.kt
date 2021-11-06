@@ -24,8 +24,9 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
     var currentTask = Task(0,"empty","",null,"",30)
     var addTask = Task(0,"Add Task","hello",null,"add",30)
-    var tasks = arrayListOf<Task>()
 
+    var tasks = arrayListOf<Task>()
+    var currentPos = -1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(
             ItemRowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -89,22 +90,8 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
 
                 }
                 "new" ->  {
-                    homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
-                    homeFragment.binding.tvTaskHeader.text= tasks[position].name
-                    homeFragment.binding.tvTaskCard.text=tasks[position].name
-                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
-                    tasks.forEach{
-                        if (it.status=="selected"){
-                            it.status="new"
-                        }
-                    }
-
-                    holder.binding.apply {
-                        tasks[position].status = "selected"
-                        currentTask=tasks[position]
-                        cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected))
-                        notifyDataSetChanged()
-                    }
+                    currentPos = position
+                    setSelected(position,holder)
                 }
             }
         }
@@ -119,6 +106,54 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                 Toast.makeText(homeFragment.context,"You need to add a task", Toast.LENGTH_SHORT).show()
         }
 
+        //move to next Task Button
+        homeFragment.binding.nextImageView.setOnClickListener{
+            if(checkSelected()){
+                if(itemCount>1){
+                    when (currentPos+1) {
+
+                        itemCount -> {
+                            currentPos = 1
+                            setSelected(currentPos,holder)
+                        }
+                        else -> {
+                            currentPos+=1
+                            setSelected(currentPos,holder)
+                        }
+                    }
+                }else{
+                    Toast.makeText(homeFragment.context,"You need to add more tasks", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(homeFragment.context,"Select a task to start", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        //move to previous Task Button
+        homeFragment.binding.previousImageView.setOnClickListener{
+
+            if(checkSelected()){
+                if(itemCount>1){
+                    when (currentPos-1) {
+
+                        0 -> {
+                            currentPos = itemCount-1
+                            setSelected(currentPos,holder)
+                        }
+                        else -> {
+                            currentPos-=1
+                            setSelected(currentPos,holder)
+                        }
+                    }
+                }else{
+                    Toast.makeText(homeFragment.context,"You need to add more tasks", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(homeFragment.context,"Select a task to start", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         holder.itemView.setOnLongClickListener {
             var myInfoDialog = Dialog(mainActivity)
@@ -146,12 +181,40 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         }
     }
 
+    private fun checkSelected():Boolean{
+        var flag = false //check if there is any selected item
+        tasks.forEach{
+            if (it.status=="selected"){
+                it.status="new"
+                flag=true
+            }
+        }
+        return flag
+    }
+
+    private fun setSelected(position: Int,holder: ItemViewHolder) {
+        homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+        homeFragment.binding.tvTaskHeader.text= tasks[position].name
+        homeFragment.binding.tvTaskCard.text=tasks[position].name
+        homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
+
+        checkSelected()
+
+        holder.binding.apply {
+            tasks[position].status = "selected"
+            currentTask=tasks[position]
+            cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected))
+            notifyDataSetChanged()
+        }
+    }
+
     override fun getItemCount() = tasks.size
 
 
     fun update(taskList: List<Task>) {
         tasks.clear()
         tasks.add(addTask)
+
         tasks.addAll(taskList)
         notifyDataSetChanged()
     }
