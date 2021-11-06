@@ -13,7 +13,8 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_style.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_add_task.xml" value="0.1" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_edit.xml" value="0.3625" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_home.xml" value="0.11641791044776119" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_statistics.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_completed.xml" value="0.36666666666666664" />
@@ -50,10 +51,6 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1484375" />
-        <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_row.xml" value="0.25" />
       </map>
     </option>
   </component>

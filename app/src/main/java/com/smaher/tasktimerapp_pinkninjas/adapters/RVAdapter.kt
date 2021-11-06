@@ -109,7 +109,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         //move to next Task Button
         homeFragment.binding.nextImageView.setOnClickListener{
             if(checkSelected()){
-                if(itemCount>1){
+                if(itemCount>1 && tasks[position].status!="completed"){
                     when (currentPos+1) {
 
                         itemCount -> {
@@ -171,7 +171,10 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             }
 
             myInfoDialog.findViewById<LinearLayout>(R.id.editTaskLayout).setOnClickListener{
-                Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
+                val bundle = Bundle()
+                bundle.putSerializable("passed_task", tasks[position])
+                Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_editFragment,bundle)
+                myInfoDialog.dismiss()
             }
 
             myInfoDialog.findViewById<TextView>(R.id.closeDialogButton).setOnClickListener{
@@ -201,6 +204,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     private fun setSelected(position: Int,holder: ItemViewHolder) {
         if (position != 0){
             currentTask = tasks[position]
+            homeFragment.myDBSeconds = tasks[position].totalTime*60000
             homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
             homeFragment.binding.tvTaskHeader.text= tasks[position].name
             homeFragment.binding.tvTaskCard.text=tasks[position].name

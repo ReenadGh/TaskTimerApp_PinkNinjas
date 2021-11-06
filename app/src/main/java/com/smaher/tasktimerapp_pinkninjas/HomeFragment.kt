@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -102,6 +103,8 @@ class HomeFragment : Fragment() {
             if(rvAdapter.currentTask.name!="empty") {
                 if(rvAdapter.isSelected()){
                     paused = if (paused) {
+                        binding.nextImageView.isVisible=false
+                        binding.previousImageView.isVisible=false
                         Toast.makeText(context, rvAdapter.currentTask.name,Toast.LENGTH_LONG).show()
                         if(myDBSeconds != -1L){
                             startTimer(myDBSeconds)
@@ -111,8 +114,11 @@ class HomeFragment : Fragment() {
                         binding.playImageView.setImageResource(R.drawable.pause_button)
                         false
                     } else {
-                        binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
                         rvAdapter.currentTask.currentTime = (time_in_milli_seconds/60000)
+                        myViewModel.updateTask(rvAdapter.currentTask)
+                        binding.nextImageView.isVisible=true
+                        binding.previousImageView.isVisible=true
+                        binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
                         countdown_timer.cancel()
                         true
                     }
@@ -139,6 +145,10 @@ class HomeFragment : Fragment() {
         countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
             override fun onFinish() {
                 myDBSeconds = -1L
+                rvAdapter.currentTask.status="completed"
+                rvAdapter.currentTask.currentTime=0
+                rvAdapter.notifyDataSetChanged()
+                myViewModel.updateTask(rvAdapter.currentTask)
                 loadConfetti()
             }
 
@@ -147,6 +157,8 @@ class HomeFragment : Fragment() {
                 myDBSeconds = millisUntilFinished
                 binding.tvTimeHeader.setText(timeFormat(millisUntilFinished)) //set text
                 time_in_milli_seconds=millisUntilFinished
+                //rvAdapter.currentTask.currentTime=time_in_milli_seconds/60000
+                //myViewModel.updateTask(rvAdapter.currentTask)
             }
 
         }

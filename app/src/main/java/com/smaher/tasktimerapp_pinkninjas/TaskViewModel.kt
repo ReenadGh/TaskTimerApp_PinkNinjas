@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 class TaskViewModel (application: Application) : AndroidViewModel(application){
     val tasks: LiveData<List<Task>>
     val repository:TaskRepository
+    var task : LiveData<Task>? = null
 
     init{
         val dao = TaskDatabase.getInstance(application).taskDao()
@@ -36,4 +37,5 @@ class TaskViewModel (application: Application) : AndroidViewModel(application){
     fun deleteAll() = viewModelScope.launch( Dispatchers.IO ){
         repository.deleteAll()
     }
+
 }
