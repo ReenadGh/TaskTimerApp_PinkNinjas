@@ -49,7 +49,7 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-65dp"
+            android:layout_marginTop="-50dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,8 +102,8 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="240dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="13dp"
             android:background="@drawable/round_timer_bg"
             android:gravity="center"
             android:orientation="vertical"
@@ -116,9 +116,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="0:0"
+                android:text="00:00"
                 android:textColor="@color/white"
-                android:textSize="45sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
                 tools:ignore="TextContrastCheck" />
 
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:gravity="center"
-                android:text=""
+                android:text="@string/task"
                 android:textColor="#99FFFFFF"
                 android:textSize="25sp"
                 tools:ignore="TextContrastCheck" />
@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:fontFamily="sans-serif-black"
-                    android:text=""
+                    android:text="@string/task_title"
                     android:textColor="#673AB7"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="casual"
-                android:text=""
+                android:text="description\ntime"
                 android:textColor="#8E8E8E"
                 android:textSize="18sp" />
 
@@ -204,7 +204,7 @@
             android:id="@+id/rvLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bottom_box"
             android:gravity="center"
             android:orientation="vertical"

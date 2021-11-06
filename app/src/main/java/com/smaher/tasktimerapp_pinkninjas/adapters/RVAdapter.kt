@@ -3,14 +3,12 @@ package com.smaher.tasktimerapp_pinkninjas.adapters
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.smaher.tasktimerapp_pinkninjas.HomeFragment
 import com.smaher.tasktimerapp_pinkninjas.MainActivity
@@ -42,25 +40,28 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             when (status) { //status = new , active , paused , completed
                 "add" -> {
                     holder.binding.apply {
+                        tvTask.setTextColor(mainActivity.resources.getColor(R.color.white))
                         taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_add_task_24))
                         cardView.background= (getDrawable(mainActivity, R.drawable.item_row_add))
                     }}
                 "completed" -> {
                     holder.binding.apply {
-                        taskImageView.setImageDrawable(
-                            getDrawable(
-                                mainActivity,
-                                R.drawable.ic_baseline_check_circle_24
-                            )
-                        )
+                        taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_check_circle_24))
                         cardView.background = (getDrawable(mainActivity, R.drawable.completed_task_bg))
 
                     } }
                 "new" -> {
                     holder.binding.apply {
-                        taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_play_circle_outline_24))
+                        taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_play_purple))
                         tvTask.setTextColor(mainActivity.resources.getColor(R.color.purple_200))
                         cardView.background = (getDrawable(mainActivity, R.drawable.item_row_style))
+                    }
+                }
+                "selected" -> {
+                    holder.binding.apply {
+                        taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_play_circle_outline_24))
+                        tvTask.setTextColor(mainActivity.resources.getColor(R.color.white))
+                        cardView.background = (getDrawable(mainActivity, R.drawable.item_row_selected))
                     }
                 }
                 else->{
@@ -78,13 +79,10 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
                 }
                 "completed" -> {
-
-                    //val bundle = Bundle()
-                    //bundle.putSerializable("passed_task",tasks[position])
-                    //homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
-                    homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+                   // val bundle = Bundle()
+                   // bundle.putSerializable("passed_task",tasks[position])
+                   //homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
                 }
- 
                 "new" ->  {
                    // val bundle = Bundle()
                    // bundle.putSerializable("passed_task",tasks[position])
@@ -92,10 +90,19 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
                     homeFragment.binding.tvTaskHeader.text= tasks[position].name
                     homeFragment.binding.tvTaskCard.text=tasks[position].name
-                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\n Duration: "+tasks[position].totalTime.toString()
+                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
+                    tasks.forEach{
+                        if (it.status=="selected"){
+                            it.status="new"
+                        }
+                    }
 
+                    holder.binding.apply {
+                        tasks[position].status = "selected"
+                        cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected))
+                        notifyDataSetChanged()
+                    }
                 }
-
             }
         }
 
@@ -106,6 +113,11 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             myInfoDialog.show()
 
             myInfoDialog.findViewById<LinearLayout>(R.id.startTaskLayout).setOnClickListener{
+                homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+                homeFragment.binding.tvTaskHeader.text= tasks[position].name
+                homeFragment.binding.tvTaskCard.text=tasks[position].name
+                homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
+                holder.binding.apply {cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected)) }
 
             }
 
@@ -125,13 +137,16 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
 
     fun update(taskList: List<Task>) {
         tasks.clear()
-
-
         tasks.add(addTask)
-        tasks.add( Task(0,"Add Task","hello",null,"new",30))
-        tasks.add( Task(0,"Add Task","hello",null,"new",30))
-        tasks.add( Task(0,"Add Task","hello",null,"new",30))
-        tasks.add( Task(0,"Add Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+        tasks.add( Task(0,"my Task","hello",null,"new",30))
+
         tasks.add( Task(0,"","",null,"empty",0))
         tasks.add( Task(0,"","",null,"empty",0))
         tasks.add( Task(0,"","",null,"empty",0))

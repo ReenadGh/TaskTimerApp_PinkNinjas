@@ -57,10 +57,8 @@ class HomeFragment : Fragment() {
         binding.expandLayout.setOnClickListener{
             if(toggle){
                 binding.tvExpand.setBackgroundResource(R.drawable.ic_baseline_keyboard_double_arrow_up_24)
-                animations = arrayOf(0f, -430F).map { translation ->
-                    ObjectAnimator.ofFloat(binding.rvLayout, "translationY", translation).apply {
-                        duration = 2000
-                    }
+                animations = arrayOf(0f, -470F).map { translation ->
+                    ObjectAnimator.ofFloat(binding.rvLayout, "translationY", translation).apply { duration = 2000 }
                 }
                 toggle = false
 
@@ -79,9 +77,15 @@ class HomeFragment : Fragment() {
             set.start()
         }
 
+
+        //to navigate to edit/delete fragment
+        binding.editImageView.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_editFragment)
+        }
+
         //to navigate to setting fragment
         binding.settingsImageView.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_settingsFragment)
+           // Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_settingsFragment)
         }
         //to navigate to statistics fragment
         binding.statisticImageButton.setOnClickListener{
