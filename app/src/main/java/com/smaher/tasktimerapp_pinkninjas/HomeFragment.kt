@@ -18,7 +18,7 @@ import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
 class HomeFragment : Fragment() {
     private lateinit var rvAdapter:RVAdapter
     private lateinit var animations :List<ObjectAnimator>
-    private var _binding: FragmentHomeBinding? = null
+    var _binding: FragmentHomeBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     val binding get() = _binding!!

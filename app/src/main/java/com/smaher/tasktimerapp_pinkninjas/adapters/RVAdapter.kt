@@ -78,10 +78,13 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
                 }
                 "completed" -> {
-                   // val bundle = Bundle()
-                   // bundle.putSerializable("passed_task",tasks[position])
-                   //homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
+
+                    //val bundle = Bundle()
+                    //bundle.putSerializable("passed_task",tasks[position])
+                    //homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
+                    homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
                 }
+ 
                 "new" ->  {
                    // val bundle = Bundle()
                    // bundle.putSerializable("passed_task",tasks[position])
@@ -122,23 +125,12 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
 
     fun update(taskList: List<Task>) {
         tasks.clear()
+
+
         tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
-        tasks.add(addTask)
+        tasks.add( Task(0,"Add Task","hello",null,"new",30))
+        tasks.add( Task(0,"Add Task","hello",null,"new",30))
+        tasks.add( Task(0,"Add Task","hello",null,"new",30))
         tasks.add( Task(0,"Add Task","hello",null,"new",30))
         tasks.add( Task(0,"","",null,"empty",0))
         tasks.add( Task(0,"","",null,"empty",0))

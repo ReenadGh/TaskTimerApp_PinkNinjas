@@ -15,11 +15,12 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentAddTaskBinding
-import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentSettingsBinding
+import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentEditBinding
 
-class SettingsFragment : Fragment() {
 
-    private var _binding: FragmentSettingsBinding? = null
+class EditFragment : Fragment() {
+
+    private var _binding: FragmentEditBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -35,7 +36,7 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         var view: View
 
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentEditBinding.inflate(inflater, container, false)
         view = binding.root
 
         /*when the fragment get the ViewModelProvider, it received the same
@@ -48,7 +49,7 @@ class SettingsFragment : Fragment() {
             //check the type of plant
             var type = task!!.image
 
-            binding.plantPickerUD.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
+            //binding.plantPickerUD.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
                 // checkedId is the RadioButton selected
 //                when (checkedId) {
 //                    R.id.radioPlant1 -> {
@@ -64,7 +65,7 @@ class SettingsFragment : Fragment() {
 //                        type = Constants.IMAGES_PLANT[2]
 //                        binding.plantImageAddUD.setAnimation(type!!)
 //                    }
-//                }
+                }
 
             })
             //set edit text to current data

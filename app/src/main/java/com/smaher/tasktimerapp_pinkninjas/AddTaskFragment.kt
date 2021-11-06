@@ -64,6 +64,7 @@ class AddTaskFragment : Fragment() {
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
+                type= IMAGES_PLANT[0]
             }
         }
 

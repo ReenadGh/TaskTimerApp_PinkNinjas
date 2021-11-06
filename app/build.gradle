@@ -85,3 +85,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
 }
+
+configurations.all {
+    resolutionStrategy {
+        force 'org.xerial:sqlite-jdbc:3.34.0'
+    }
+}
