@@ -21,10 +21,10 @@ import nl.dionsegijn.konfetti.models.Size
 class HomeFragment : Fragment() {
     private lateinit var rvAdapter:RVAdapter
     private lateinit var animations :List<ObjectAnimator>
-    private var _binding: FragmentHomeBinding? = null
+    var _binding: FragmentHomeBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     //declare tasks view model
     lateinit var myViewModel: TaskViewModel
     var toggle = true
