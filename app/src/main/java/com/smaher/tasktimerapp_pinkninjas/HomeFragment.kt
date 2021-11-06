@@ -2,7 +2,7 @@ package com.smaher.tasktimerapp_pinkninjas
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.graphics.Color
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -11,11 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
-import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
+import java.lang.String
+import java.util.concurrent.TimeUnit
 
 class HomeFragment : Fragment() {
     private lateinit var rvAdapter:RVAdapter
@@ -51,21 +51,7 @@ class HomeFragment : Fragment() {
             list?.let { rvAdapter.update(it) }
         })
 
-
-        //play and pause toggle on click
-        binding.playImageView.setOnClickListener{
-            paused = if (paused){
-                binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
-                startTimer( START_MILLI_SECONDS)
-                false
-            }else{
-                binding.playImageView.setImageResource(R.drawable.pause_button)
-                countdown_timer.cancel()
-                true
-            }
-
-        }
-
+        setRV()
 
         // recyclerview moving up & down
         binding.expandLayout.setOnClickListener{
@@ -106,7 +92,22 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_statisticsFragment)
         }
 
-        setRV()
+
+        //play and pause toggle on click
+        binding.playImageView.setOnClickListener{
+            if(rvAdapter.currentTask.name!="empty") {
+                paused = if (paused) {
+                    binding.playImageView.setImageResource(R.drawable.pause_button)
+                    startTimer(rvAdapter.currentTask.totalTime.toLong()*START_MILLI_SECONDS)
+                    false
+                } else {
+                    binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+                    countdown_timer.cancel()
+                    true
+                }
+            }
+        }
+
 
         return view
     }
@@ -123,11 +124,24 @@ class HomeFragment : Fragment() {
             override fun onFinish() {
                 loadConfetti()
             }
-
-            override fun onTick(p0: Long) {
-                time_in_milli_seconds = p0
-                val seconds = (time_in_milli_seconds / 1000) % 60
-                binding.tvTimeHeader.text = "00:$seconds"
+            @SuppressLint("DefaultLocale")
+            override fun onTick(millisUntilFinished: Long) {
+                //Convert milliseconds into hour,minute and seconds
+                val hms = String.format(
+                    "%02d:%02d:%02d",
+                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                        TimeUnit.MILLISECONDS.toHours(
+                            millisUntilFinished
+                        )
+                    ),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                        TimeUnit.MILLISECONDS.toMinutes(
+                            millisUntilFinished
+                        )
+                    )
+                )
+                binding.tvTimeHeader.setText(hms) //set text
             }
         }
         countdown_timer.start()

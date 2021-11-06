@@ -203,6 +203,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         holder.binding.apply {
             tasks[position].status = "selected"
             currentTask=tasks[position]
+            homeFragment.binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
             cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected))
             notifyDataSetChanged()
         }
