@@ -102,6 +102,7 @@ class EditFragment : Fragment() {
                     .show()
             }
             binding.btBackUD.setOnClickListener {
+
                 findNavController().navigate(R.id.action_editFragment_to_homeFragment)
             }
 

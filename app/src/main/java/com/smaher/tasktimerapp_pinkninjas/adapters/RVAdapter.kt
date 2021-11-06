@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -97,11 +98,10 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         }
 
         homeFragment.binding.editImageView.setOnClickListener{
-            if(getItemCount()>1 && currentTask.name!="empty") {
+            if(itemCount >1 && currentTask.name!="empty") {
                 val bundle = Bundle()
                 bundle.putSerializable("passed_task", currentTask)
-                homeFragment.findNavController()
-                    .navigate(R.id.action_homeFragment_to_editFragment, bundle)
+                homeFragment.findNavController().navigate(R.id.action_homeFragment_to_editFragment, bundle)
             }else
                 Toast.makeText(homeFragment.context,"You need to add a task", Toast.LENGTH_SHORT).show()
         }
@@ -191,23 +191,31 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         }
         return flag
     }
-
+    fun isSelected():Boolean{
+        var flag = false //check if there is any selected item
+        tasks.forEach{
+                flag=true
+        }
+        return flag
+    }
     private fun setSelected(position: Int,holder: ItemViewHolder) {
-        currentTask = tasks[position]
-        homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
-        homeFragment.binding.tvTaskHeader.text= tasks[position].name
-        homeFragment.binding.tvTaskCard.text=tasks[position].name
-        homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString() +" min"
+        if (position != 0){
+            currentTask = tasks[position]
+            homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
+            homeFragment.binding.tvTaskHeader.text= tasks[position].name
+            homeFragment.binding.tvTaskCard.text=tasks[position].name
+            homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString() +" min"
 
-        checkSelected()
-
+            checkSelected()
 
             holder.binding.apply {
                 tasks[position].status = "selected"
-                homeFragment.binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+                homeFragment.toggle=true
                 cardView.background = (getDrawable(mainActivity, R.drawable.item_row_selected))
                 notifyDataSetChanged()
             }
+        }
+
 
     }
 
@@ -218,6 +226,11 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         tasks.clear()
         tasks.add(addTask)
         tasks.addAll(taskList)
+        if (itemCount<2){
+            homeFragment.binding.emptyCardLayout.visibility=View.VISIBLE
+        }else{
+            homeFragment.binding.emptyCardLayout.visibility=View.GONE
+        }
         notifyDataSetChanged()
     }
 }

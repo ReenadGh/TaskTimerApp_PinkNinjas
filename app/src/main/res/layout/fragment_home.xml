@@ -20,6 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         -->
+
         <ImageButton
             android:id="@+id/statisticImageButton"
             android:layout_width="48dp"
@@ -236,6 +237,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:paddingBottom="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/emptyCardLayout"
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="15dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="9"
+                android:fontFamily="casual"
+                android:gravity="center"
+                android:text="Add some Tasks to get you own plants :D"
+                android:textColor="#673AB7"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

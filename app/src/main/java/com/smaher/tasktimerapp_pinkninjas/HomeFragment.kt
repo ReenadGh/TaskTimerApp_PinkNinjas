@@ -8,6 +8,7 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -32,7 +33,7 @@ class HomeFragment : Fragment() {
     lateinit var countdown_timer :CountDownTimer
     var START_MILLI_SECONDS = 60000L
     var time_in_milli_seconds = 60000L
-    var currentTaskHome: Task?=null
+    var myDBSeconds = -1L
 
 
 
@@ -99,21 +100,30 @@ class HomeFragment : Fragment() {
         //play and pause toggle on click
         binding.playImageView.setOnClickListener{
             if(rvAdapter.currentTask.name!="empty") {
-                paused = if (paused) {
-                    binding.playImageView.setImageResource(R.drawable.pause_button)
-                    startTimer(   rvAdapter.currentTask.totalTime*START_MILLI_SECONDS)
-                    false
-                } else {
-                    binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
-                    rvAdapter.currentTask.currentTime = (time_in_milli_seconds/60000)
-                    rvAdapter.currentTask.status="new"
-                    myViewModel.updateTask(rvAdapter.currentTask)
-                    countdown_timer.cancel()
-                    true
+                if(rvAdapter.isSelected()){
+                    paused = if (paused) {
+                        Toast.makeText(context, rvAdapter.currentTask.name,Toast.LENGTH_LONG).show()
+                        if(myDBSeconds != -1L){
+                            startTimer(myDBSeconds)
+                        }else{
+                            startTimer(rvAdapter.currentTask.totalTime*START_MILLI_SECONDS)
+                        }
+                        binding.playImageView.setImageResource(R.drawable.pause_button)
+                        false
+                    } else {
+                        binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+                        rvAdapter.currentTask.currentTime = (time_in_milli_seconds/60000)
+                        countdown_timer.cancel()
+                        true
+                    }
+                }else{
+                    Toast.makeText(context,"Select a task to start",Toast.LENGTH_LONG).show()
                 }
+
+            }else{
+                Toast.makeText(context,"Select a task to start",Toast.LENGTH_LONG).show()
             }
         }
-
 
         return view
     }
@@ -128,30 +138,17 @@ class HomeFragment : Fragment() {
     private fun startTimer(time_in_seconds: Long) {
         countdown_timer = object : CountDownTimer(time_in_seconds, 1000) {
             override fun onFinish() {
+                myDBSeconds = -1L
                 loadConfetti()
             }
 
             @SuppressLint("DefaultLocale")
             override fun onTick(millisUntilFinished: Long) {
-                //Convert milliseconds into hour,minute and seconds
-                val hms = String.format(
-                    "%02d:%02d:%02d",
-                    TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
-                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
-                        TimeUnit.MILLISECONDS.toHours(
-                            millisUntilFinished
-                        )
-                    ),
-                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
-                        TimeUnit.MILLISECONDS.toMinutes(
-                            millisUntilFinished
-                        )
-                    )
-                )
-
+                myDBSeconds = millisUntilFinished
                 binding.tvTimeHeader.setText(timeFormat(millisUntilFinished)) //set text
                 time_in_milli_seconds=millisUntilFinished
             }
+
         }
         countdown_timer.start()
     }
