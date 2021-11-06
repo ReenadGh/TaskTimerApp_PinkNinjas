@@ -78,14 +78,18 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
                 }
                 "completed" -> {
-                    val bundle = Bundle()
-                    bundle.putSerializable("passed_task",tasks[position])
-                    homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
+                   // val bundle = Bundle()
+                   // bundle.putSerializable("passed_task",tasks[position])
+                   //homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
                 }
                 "new" ->  {
-                    val bundle = Bundle()
-                    bundle.putSerializable("passed_task",tasks[position])
-                   homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
+                   // val bundle = Bundle()
+                   // bundle.putSerializable("passed_task",tasks[position])
+                  // homeFragment.findNavController().navigate(R.id.action_homeFragment_to_settingsFragment,bundle)
+                    homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+                    homeFragment.binding.tvTaskHeader.text= tasks[position].name
+                    homeFragment.binding.tvTaskCard.text=tasks[position].name
+                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\n Duration: "+tasks[position].totalTime.toString()
 
                 }
 

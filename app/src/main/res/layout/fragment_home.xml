@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_main">
 
-        <nl.dionsegijn.konfetti.KonfettiView
+        <!--<nl.dionsegijn.konfetti.KonfettiView
             android:id="@+id/myConfetti"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -19,7 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+        -->
         <ImageButton
             android:id="@+id/statisticImageButton"
             android:layout_width="48dp"
@@ -116,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/_03_50"
+                android:text="0:0"
                 android:textColor="@color/white"
                 android:textSize="45sp"
                 android:textStyle="bold"
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="casual"
                 android:gravity="center"
-                android:text="@string/task_2"
+                android:text=""
                 android:textColor="#99FFFFFF"
                 android:textSize="25sp"
                 tools:ignore="TextContrastCheck" />
@@ -159,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:fontFamily="sans-serif-black"
-                    android:text="@string/task_2"
+                    android:text=""
                     android:textColor="#673AB7"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -180,9 +180,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="casual"
-                android:text="@string/total_time"
+                android:text=""
                 android:textColor="#8E8E8E"
-                android:textSize="22sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvRemainingTimeCard"

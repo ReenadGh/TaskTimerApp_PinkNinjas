@@ -14,9 +14,6 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
-import nl.dionsegijn.konfetti.models.Shape
-import nl.dionsegijn.konfetti.models.Size
-
 
 class HomeFragment : Fragment() {
     private lateinit var rvAdapter:RVAdapter
@@ -24,7 +21,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     //declare tasks view model
     lateinit var myViewModel: TaskViewModel
     var toggle = true
@@ -129,7 +126,7 @@ class HomeFragment : Fragment() {
     private fun loadConfetti() {
         //restart the seconds count
         time_in_milli_seconds = START_MILLI_SECONDS
-        binding.myConfetti.build()
+       /* binding.myConfetti.build()
             .addColors(Color.RED, Color.WHITE, Color.MAGENTA, Color.YELLOW)
             .setDirection(0.0, 359.0)
             .setSpeed(1f, 5f)
@@ -138,7 +135,7 @@ class HomeFragment : Fragment() {
             .addShapes(Shape.RECT, Shape.CIRCLE)
             .addSizes(Size(12))
             .setPosition(-50f, binding.myConfetti.width + 50f, -50f, -50f)
-            .streamFor(300, 5000L)
+            .streamFor(300, 5000L)*/
     }
 
 }
