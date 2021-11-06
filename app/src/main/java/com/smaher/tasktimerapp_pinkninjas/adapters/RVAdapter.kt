@@ -83,7 +83,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
                 }
                 "completed" -> {
-                    homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+                    homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
                     homeFragment.binding.tvTaskHeader.text= tasks[position].name
                     homeFragment.binding.tvTaskCard.text=tasks[position].name
                     homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
@@ -162,10 +162,10 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             myInfoDialog.show()
 
             myInfoDialog.findViewById<LinearLayout>(R.id.startTaskLayout).setOnClickListener{
-                homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+                homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
                 homeFragment.binding.tvTaskHeader.text= tasks[position].name
                 homeFragment.binding.tvTaskCard.text=tasks[position].name
-                homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
+                homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString() +" min"
                 holder.binding.apply {cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected)) }
 
             }
@@ -181,7 +181,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         }
     }
 
-    private fun checkSelected():Boolean{
+    fun checkSelected():Boolean{
         var flag = false //check if there is any selected item
         tasks.forEach{
             if (it.status=="selected"){
@@ -193,20 +193,22 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     }
 
     private fun setSelected(position: Int,holder: ItemViewHolder) {
-        homeFragment.binding.tvTimeHeader.text= tasks[position].currentTime.toString()
+        currentTask = tasks[position]
+        homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
         homeFragment.binding.tvTaskHeader.text= tasks[position].name
         homeFragment.binding.tvTaskCard.text=tasks[position].name
-        homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
+        homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString() +" min"
 
         checkSelected()
 
-        holder.binding.apply {
-            tasks[position].status = "selected"
-            currentTask=tasks[position]
-            homeFragment.binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
-            cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected))
-            notifyDataSetChanged()
-        }
+
+            holder.binding.apply {
+                tasks[position].status = "selected"
+                homeFragment.binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+                cardView.background = (getDrawable(mainActivity, R.drawable.item_row_selected))
+                notifyDataSetChanged()
+            }
+
     }
 
     override fun getItemCount() = tasks.size
@@ -215,7 +217,6 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     fun update(taskList: List<Task>) {
         tasks.clear()
         tasks.add(addTask)
-
         tasks.addAll(taskList)
         notifyDataSetChanged()
     }

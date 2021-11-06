@@ -30,12 +30,13 @@ class StatAdapter(val mainActivity: MainActivity, val statFragment: StatisticsFr
         val image = tasks[position].image
         val status = tasks[position].status
         val totalTime = tasks[position].totalTime
+        val currentTime =  tasks[position].currentTime
 
         holder.binding.apply {
             tvTaskName.text = name
             tvDesc.text = description
             plantStatAdapter.setAnimation(image!!)
-            tvTime.text= "Remaining time: $totalTime"
+            tvTime.text= "Remaining time: $currentTime"
 
         }
     }

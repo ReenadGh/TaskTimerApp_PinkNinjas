@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
+import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
 import java.lang.String
 import java.util.concurrent.TimeUnit
@@ -31,6 +32,8 @@ class HomeFragment : Fragment() {
     lateinit var countdown_timer :CountDownTimer
     var START_MILLI_SECONDS = 60000L
     var time_in_milli_seconds = 60000L
+    var currentTaskHome: Task?=null
+
 
 
     override fun onCreateView(
@@ -98,10 +101,13 @@ class HomeFragment : Fragment() {
             if(rvAdapter.currentTask.name!="empty") {
                 paused = if (paused) {
                     binding.playImageView.setImageResource(R.drawable.pause_button)
-                    startTimer(rvAdapter.currentTask.totalTime.toLong()*START_MILLI_SECONDS)
+                    startTimer(   rvAdapter.currentTask.totalTime*START_MILLI_SECONDS)
                     false
                 } else {
                     binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+                    rvAdapter.currentTask.currentTime = (time_in_milli_seconds/60000)
+                    rvAdapter.currentTask.status="new"
+                    myViewModel.updateTask(rvAdapter.currentTask)
                     countdown_timer.cancel()
                     true
                 }
@@ -124,6 +130,7 @@ class HomeFragment : Fragment() {
             override fun onFinish() {
                 loadConfetti()
             }
+
             @SuppressLint("DefaultLocale")
             override fun onTick(millisUntilFinished: Long) {
                 //Convert milliseconds into hour,minute and seconds
@@ -141,7 +148,9 @@ class HomeFragment : Fragment() {
                         )
                     )
                 )
-                binding.tvTimeHeader.setText(hms) //set text
+
+                binding.tvTimeHeader.setText(timeFormat(millisUntilFinished)) //set text
+                time_in_milli_seconds=millisUntilFinished
             }
         }
         countdown_timer.start()
@@ -160,6 +169,25 @@ class HomeFragment : Fragment() {
             .addSizes(Size(12))
             .setPosition(-50f, binding.myConfetti.width + 50f, -50f, -50f)
             .streamFor(300, 5000L)*/
+    }
+
+    //Convert milliseconds into hour,minute and seconds
+    @SuppressLint("DefaultLocale")
+    fun timeFormat(millisUntilFinished: Long): kotlin.String {
+        return String.format(
+            "%02d:%02d:%02d",
+            TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+            TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                TimeUnit.MILLISECONDS.toHours(
+                    millisUntilFinished
+                )
+            ),
+            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                TimeUnit.MILLISECONDS.toMinutes(
+                    millisUntilFinished
+                )
+            )
+        )
     }
 
 }

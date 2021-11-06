@@ -14,7 +14,7 @@ data class Task(
     var description:String,
     var image: Int? =null,
     var status:String = "new",
-    var totalTime:Int,
-    var currentTime:Int = 0
+    var totalTime:Long,
+    var currentTime:Long = 0L
 
     ):Serializable

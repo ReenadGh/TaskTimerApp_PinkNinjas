@@ -77,7 +77,7 @@ class AddTaskFragment : Fragment() {
             if(title.text.isNotBlank()
                 &&description.text.isNotBlank()
                 &&time.text.isNotBlank()){
-                myViewModel.addTask(Task(0,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toInt()))
+                myViewModel.addTask(Task(0,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toLong()))
                 Toast.makeText(this.context,"Task Added successfully",Toast.LENGTH_SHORT).show()
                 hideKeyboard()
                 Navigation.findNavController(view).navigate(R.id.action_addTaskFragment_to_homeFragment)
