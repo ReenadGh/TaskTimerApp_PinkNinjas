@@ -32,7 +32,7 @@ class StatAdapter(val mainActivity: MainActivity, val statFragment: StatisticsFr
         val totalTime = tasks[position].totalTime
         val currentTime =  tasks[position].currentTime
 
-        statFragment.binding.tvTotalTimeAll.setText("The total time you have spend growing your beautiful plants "+statFragment.timeFormat(totalTimeAllTasks()))
+        statFragment.binding.tvTotalTimeAll.setText("The total time you have spent growing your beautiful plants \n"+statFragment.timeFormat(totalTimeAllTasks()))
         holder.binding.apply {
             tvTaskName.text = name
             tvDesc.text = description

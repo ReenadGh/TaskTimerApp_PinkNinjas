@@ -47,7 +47,8 @@
                 android:gravity="center"
                 android:padding="30dp"
                 android:text=""
-                android:textColor="@color/purple_200" />
+                android:textColor="@color/purple_200"
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvList"
