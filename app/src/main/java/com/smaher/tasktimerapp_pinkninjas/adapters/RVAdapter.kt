@@ -42,6 +42,11 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         val status = tasks[position].status
         val totalTime = tasks[position].totalTime
 
+        if(itemCount==1){
+            homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat(0)
+            homeFragment.binding.tvTaskHeader.text= tasks[position].name
+        }
+
         holder.binding.apply {
             tvTask.text = name
             when (status) { //status = new , active , paused , completed

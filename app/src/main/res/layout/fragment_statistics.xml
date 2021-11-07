@@ -45,7 +45,7 @@
                 android:gravity="center"
                 android:textColor="@color/purple_200"
                 android:layout_marginBottom="20dp"
-                android:text="TextView" />
+                android:text="" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvList"
