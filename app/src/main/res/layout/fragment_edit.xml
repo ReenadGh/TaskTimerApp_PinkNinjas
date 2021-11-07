@@ -148,7 +148,7 @@
                     app:cardCornerRadius="50dp">
 
                     <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/plantImageAdd"
+                        android:id="@+id/plantImageEdit"
                         android:layout_width="100dp"
                         android:layout_height="90dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +160,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <Spinner
-                    android:id="@+id/plantPickerSPinner"
+                    android:id="@+id/plantPickerSPinnerEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/plantsItems"

@@ -17,6 +17,7 @@ import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentAddTaskBinding
 import android.widget.RadioGroup
 import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
+import kotlin.time.toDuration
 
 
 class AddTaskFragment : Fragment() {
@@ -43,23 +44,18 @@ class AddTaskFragment : Fragment() {
 
         //check the type of plant
         var type=IMAGES_PLANT[0]
+
         binding.plantPicker.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                when(position){
-                   0 -> {
-                        type = IMAGES_PLANT[0]
-                        binding.plantImageAdd.setAnimation(type)
 
-                    }
-                    1 -> {
-                        type = IMAGES_PLANT[1]
-                        binding.plantImageAdd.setAnimation(type)
-                    }
-                    2 -> {
-                        type = IMAGES_PLANT[2]
-                        binding.plantImageAdd.setAnimation(type)
-                    }
+                when(position){
+                   0 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[0]) }
+                   1 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[1]) }
+                   2 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[2]) }
                 }
+
+                binding.plantImageAdd.playAnimation()
+                binding.plantImageAdd.loop(true)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {

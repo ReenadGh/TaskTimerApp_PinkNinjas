@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -14,6 +15,7 @@ import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.smaher.tasktimerapp_pinkninjas.Constants
 import com.smaher.tasktimerapp_pinkninjas.HomeFragment
 import com.smaher.tasktimerapp_pinkninjas.MainActivity
 import com.smaher.tasktimerapp_pinkninjas.R
@@ -225,6 +227,12 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             homeFragment.binding.tvTaskCard.text=tasks[position].name
             homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime/60000 +" min"
             homeFragment.binding.tvRemainingTimeCard.text="Remaining time: "+ homeFragment.timeFormat(tasks[position].currentTime)
+
+            when(tasks[position].image){
+                Constants.IMAGES_PLANT[0]-> { homeFragment.binding.characterImageView.setAnimation(Constants.IMAGES_PLANT[0]) }
+                Constants.IMAGES_PLANT[1] -> { homeFragment.binding.characterImageView.setAnimation(Constants.IMAGES_PLANT[1]) }
+                Constants.IMAGES_PLANT[2] -> { homeFragment.binding.characterImageView.setAnimation(Constants.IMAGES_PLANT[2]) }
+            }
 
             checkSelected()
 

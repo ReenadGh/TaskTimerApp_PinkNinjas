@@ -50,23 +50,16 @@ class EditFragment : Fragment() {
             //check the type of plant
             var type = task!!.image
 
-        binding.plantPickerSPinner.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+        binding.plantPickerSPinnerEdit.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 when(position){
-                    0 -> {
-                        type = Constants.IMAGES_PLANT[0]
-                        binding.plantImageAdd.setAnimation(type!!)
-
-                    }
-                    1 -> {
-                        type = Constants.IMAGES_PLANT[1]
-                        binding.plantImageAdd.setAnimation(type!!)
-                    }
-                    2 -> {
-                        type = Constants.IMAGES_PLANT[2]
-                        binding.plantImageAdd.setAnimation(type!!)
-                    }
+                    0 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[0]) }
+                    1 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[1]) }
+                    2 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[2]) }
                 }
+
+                binding.plantImageEdit.playAnimation()
+                binding.plantImageEdit.loop(true)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {

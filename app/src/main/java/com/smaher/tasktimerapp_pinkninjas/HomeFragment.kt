@@ -3,6 +3,7 @@ package com.smaher.tasktimerapp_pinkninjas
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
 import com.smaher.tasktimerapp_pinkninjas.database.Task
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
 import java.lang.String
 import java.util.concurrent.TimeUnit
 
@@ -167,7 +170,7 @@ class HomeFragment : Fragment() {
     private fun loadConfetti() {
         //restart the seconds count
         time_in_milli_seconds = START_MILLI_SECONDS
-       /* binding.myConfetti.build()
+        binding.myConfetti.build()
             .addColors(Color.RED, Color.WHITE, Color.MAGENTA, Color.YELLOW)
             .setDirection(0.0, 359.0)
             .setSpeed(1f, 5f)
@@ -176,7 +179,7 @@ class HomeFragment : Fragment() {
             .addShapes(Shape.RECT, Shape.CIRCLE)
             .addSizes(Size(12))
             .setPosition(-50f, binding.myConfetti.width + 50f, -50f, -50f)
-            .streamFor(300, 5000L)*/
+            .streamFor(300, 5000L)
     }
 
     //Convert milliseconds into hour,minute and seconds

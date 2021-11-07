@@ -10,15 +10,12 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/ic_baseline_arrow_back.xml" value="0.3828125" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/ic_baseline_insert_chart_24.xml" value="0.3828125" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_add.xml" value="0.3828125" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_selected.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/item_row_style.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/activity_start.xml" value="0.2046875" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_add_task.xml" value="0.1" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_edit.xml" value="0.1" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_home.xml" value="0.11641791044776119" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_statistics.xml" value="0.1" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_statistics.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_completed.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/item_row.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/stat_item.xml" value="0.20416666666666666" />
@@ -41,6 +38,7 @@
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/drawable/round_corner_box.xml" value="0.2703125" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_add_task.xml" value="0.264" />
+        <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_edit.xml" value="0.6" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_settings.xml" value="0.17300724637681159" />
         <entry key="..\:/Users/reems/AndroidStudioProjects/TaskTimerApp_PinkNinjas/app/src/main/res/layout/fragment_statistics.xml" value="0.17300724637681159" />
@@ -53,6 +51,10 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1484375" />
+        <entry key="app/src/main/res/layout/fragment_add_task.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_row.xml" value="0.25" />
       </map>
     </option>
   </component>
