@@ -36,7 +36,7 @@ class StatAdapter(val mainActivity: MainActivity, val statFragment: StatisticsFr
             tvTaskName.text = name
             tvDesc.text = description
             plantStatAdapter.setAnimation(image!!)
-            tvTime.text= "Remaining time: $currentTime"
+            tvTime.text= "Remaining time: ${currentTime/60000}"
 
         }
     }

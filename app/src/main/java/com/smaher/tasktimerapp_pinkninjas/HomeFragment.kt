@@ -106,20 +106,16 @@ class HomeFragment : Fragment() {
                         binding.nextImageView.isVisible=false
                         binding.previousImageView.isVisible=false
                         Toast.makeText(context, rvAdapter.currentTask.name,Toast.LENGTH_LONG).show()
-                        if(myDBSeconds != -1L){
-                            startTimer(myDBSeconds)
-                        }else{
-                            startTimer(rvAdapter.currentTask.totalTime*START_MILLI_SECONDS)
-                        }
+                        startTimer(myDBSeconds)
                         binding.playImageView.setImageResource(R.drawable.pause_button)
                         false
                     } else {
-                        rvAdapter.currentTask.currentTime = (time_in_milli_seconds/60000)
+                        countdown_timer.cancel()
+                        rvAdapter.currentTask.currentTime = myDBSeconds
                         myViewModel.updateTask(rvAdapter.currentTask)
                         binding.nextImageView.isVisible=true
                         binding.previousImageView.isVisible=true
                         binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
-                        countdown_timer.cancel()
                         true
                     }
                 }else{
@@ -156,7 +152,7 @@ class HomeFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 myDBSeconds = millisUntilFinished
                 binding.tvTimeHeader.setText(timeFormat(millisUntilFinished)) //set text
-                time_in_milli_seconds=millisUntilFinished
+                //time_in_milli_seconds=millisUntilFinished
                 //rvAdapter.currentTask.currentTime=time_in_milli_seconds/60000
                 //myViewModel.updateTask(rvAdapter.currentTask)
             }
@@ -198,5 +194,6 @@ class HomeFragment : Fragment() {
             )
         )
     }
+
 
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
 import com.smaher.tasktimerapp_pinkninjas.adapters.StatAdapter
@@ -39,6 +40,9 @@ class StatisticsFragment : Fragment() {
         myViewModel.tasks.observe(viewLifecycleOwner, {list->
             list?.let { rvAdapter.update(it) }
         })
+        binding.btBackStat.setOnClickListener{
+            findNavController().navigate(R.id.action_statisticsFragment_to_homeFragment)
+        }
 
 
         return view

@@ -76,7 +76,7 @@ class EditFragment : Fragment() {
         //set edit text to current data
         binding.taskTitleETUD.setText(task.name)
         binding.taskDescriptionETUD.setText(task.description)
-        binding.totalTimeETUD.setText(task.totalTime.toString())
+        binding.totalTimeETUD.setText((task.totalTime/60000).toString())
 
         binding.btUpdate.setOnClickListener{
             title= binding.taskTitleETUD
@@ -87,7 +87,7 @@ class EditFragment : Fragment() {
             if(title.text.isNotBlank()
                 &&description.text.isNotBlank()
                 &&time.text.isNotBlank()){
-                myViewModel.updateTask(Task(0,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toLong()))
+                myViewModel.updateTask(Task(task.id,title.text.toString(),description.text.toString(),type,"new",time.text.toString().toLong()*60000,time.text.toString().toLong()*60000))
                 Toast.makeText(this.context,"Task Added successfully",Toast.LENGTH_SHORT).show()
                 hideKeyboard()
                 Navigation.findNavController(view).navigate(R.id.action_editFragment_to_homeFragment)

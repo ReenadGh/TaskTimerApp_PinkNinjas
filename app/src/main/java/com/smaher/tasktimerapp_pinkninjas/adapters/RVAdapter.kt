@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -87,7 +88,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                     homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
                     homeFragment.binding.tvTaskHeader.text= tasks[position].name
                     homeFragment.binding.tvTaskCard.text=tasks[position].name
-                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()
+                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()+" min  "
 
                 }
                 "new" ->  {
@@ -162,10 +163,10 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             myInfoDialog.show()
 
             myInfoDialog.findViewById<LinearLayout>(R.id.startTaskLayout).setOnClickListener{
-                homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
+                homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat(tasks[position].currentTime)
                 homeFragment.binding.tvTaskHeader.text= tasks[position].name
                 homeFragment.binding.tvTaskCard.text=tasks[position].name
-                homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString() +" min"
+                homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime/60000 +" min"
                 holder.binding.apply {cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected)) }
 
             }
@@ -191,6 +192,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                 it.status="new"
                 flag=true
             }
+            homeFragment.myViewModel.updateTask(it)
         }
         return flag
     }
@@ -203,12 +205,13 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     }
     private fun setSelected(position: Int,holder: ItemViewHolder) {
         if (position != 0){
+            homeFragment.myViewModel.updateTask(tasks[position])
             currentTask = tasks[position]
-            homeFragment.myDBSeconds = tasks[position].totalTime*60000
-            homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
+            homeFragment.myDBSeconds = tasks[position].currentTime
+            homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime))
             homeFragment.binding.tvTaskHeader.text= tasks[position].name
             homeFragment.binding.tvTaskCard.text=tasks[position].name
-            homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString() +" min"
+            homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime/60000 +" min"
 
             checkSelected()
 
@@ -218,6 +221,12 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                 cardView.background = (getDrawable(mainActivity, R.drawable.item_row_selected))
                 notifyDataSetChanged()
             }
+
+            homeFragment.binding.nextImageView.isVisible=true
+            homeFragment.binding.previousImageView.isVisible=true
+            homeFragment.binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
+            //homeFragment.binding.playImageView.callOnClick()
+
         }
 
 
