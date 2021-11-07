@@ -32,11 +32,12 @@ class StatAdapter(val mainActivity: MainActivity, val statFragment: StatisticsFr
         val totalTime = tasks[position].totalTime
         val currentTime =  tasks[position].currentTime
 
+        statFragment.binding.tvTotalTimeAll.setText("The total time you have spend growing your beautiful plants "+statFragment.timeFormat(totalTimeAllTasks()))
         holder.binding.apply {
             tvTaskName.text = name
             tvDesc.text = description
             plantStatAdapter.setAnimation(image!!)
-            tvTime.text= "Remaining time: ${currentTime/60000}"
+            tvTime.text= "Remaining time: ${statFragment.timeFormat(currentTime)}"
 
         }
     }
@@ -48,6 +49,14 @@ class StatAdapter(val mainActivity: MainActivity, val statFragment: StatisticsFr
             tasks.addAll(taskList)
             notifyDataSetChanged()
         }
+
+    fun totalTimeAllTasks():Long{
+        var total=0L
+        tasks.forEach{
+            total+= it.totalTime - it.currentTime
+        }
+        return total
+    }
 
 
 

@@ -11,7 +11,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.view.isVisible
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +25,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
     class ItemViewHolder(val binding: ItemRowBinding) : RecyclerView.ViewHolder(binding.root)
     var currentTask = Task(0,"empty","",null,"",30)
     var addTask = Task(0,"Add Task","hello",null,"add",30)
-
+    var isActive=false
     var tasks = arrayListOf<Task>()
     var currentPos = -1
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -68,6 +67,12 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                         taskImageView.setImageDrawable(getDrawable(mainActivity, R.drawable.ic_baseline_play_circle_outline_24))
                         tvTask.setTextColor(mainActivity.resources.getColor(R.color.white))
                         cardView.background = (getDrawable(mainActivity, R.drawable.item_row_selected))
+                        //last selected show it up
+                        homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat(tasks[position].currentTime)
+                        homeFragment.binding.tvTaskHeader.text= tasks[position].name
+                        homeFragment.binding.tvTaskCard.text=tasks[position].name
+                        homeFragment.binding.tvRemainingTimeCard.text="Remaining time: "+ homeFragment.timeFormat(tasks[position].currentTime)
+                        homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime/60000 +" min"
                     }
                 }
                 else->{
@@ -80,20 +85,26 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         }
 
         holder.itemView.setOnClickListener {
-            when (status) { //status = new , active , paused , completed
-                "add" -> {
-                    Navigation.findNavController(homeFragment.requireView()).navigate(R.id.action_homeFragment_to_addTaskFragment)
-                }
-                "completed" -> {
-                    homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat((tasks[position].currentTime).toLong()/60000)
-                    homeFragment.binding.tvTaskHeader.text= tasks[position].name
-                    homeFragment.binding.tvTaskCard.text=tasks[position].name
-                    homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime.toString()+" min  "
+            if(!isActive) {
+                when (status) { //status = new  , completed
+                    "add" -> {
+                        Navigation.findNavController(homeFragment.requireView())
+                            .navigate(R.id.action_homeFragment_to_addTaskFragment)
+                    }
+                    "completed" -> {
+                        homeFragment.binding.tvTimeHeader.text =
+                            homeFragment.timeFormat((tasks[position].currentTime).toLong() / 60000)
+                        homeFragment.binding.tvTaskHeader.text = tasks[position].name
+                        homeFragment.binding.tvTaskCard.text = tasks[position].name
+                        homeFragment.binding.tvRemainingTimeCard.text="Remaining time: "+ homeFragment.timeFormat(tasks[position].currentTime)
+                        homeFragment.binding.tvTotalTimeCard.text =
+                            tasks[position].description + "\nDuration: " + tasks[position].totalTime.toString() + " min  "
 
-                }
-                "new" ->  {
-                    currentPos = position
-                    setSelected(position,holder)
+                    }
+                    "new" -> {
+                        currentPos = position
+                        setSelected(position, holder)
+                    }
                 }
             }
         }
@@ -166,6 +177,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                 homeFragment.binding.tvTimeHeader.text= homeFragment.timeFormat(tasks[position].currentTime)
                 homeFragment.binding.tvTaskHeader.text= tasks[position].name
                 homeFragment.binding.tvTaskCard.text=tasks[position].name
+                homeFragment.binding.tvRemainingTimeCard.text="Remaining time: "+ homeFragment.timeFormat(tasks[position].currentTime)
                 homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime/60000 +" min"
                 holder.binding.apply {cardView.background= (getDrawable(mainActivity, R.drawable.item_row_selected)) }
 
@@ -212,6 +224,7 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
             homeFragment.binding.tvTaskHeader.text= tasks[position].name
             homeFragment.binding.tvTaskCard.text=tasks[position].name
             homeFragment.binding.tvTotalTimeCard.text=tasks[position].description+"\nDuration: "+tasks[position].totalTime/60000 +" min"
+            homeFragment.binding.tvRemainingTimeCard.text="Remaining time: "+ homeFragment.timeFormat(tasks[position].currentTime)
 
             checkSelected()
 
@@ -221,11 +234,6 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                 cardView.background = (getDrawable(mainActivity, R.drawable.item_row_selected))
                 notifyDataSetChanged()
             }
-
-            homeFragment.binding.nextImageView.isVisible=true
-            homeFragment.binding.previousImageView.isVisible=true
-            homeFragment.binding.playImageView.setImageResource(R.drawable.ic_baseline_play_circle_outline_24)
-            //homeFragment.binding.playImageView.callOnClick()
 
         }
 
@@ -246,4 +254,5 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
         }
         notifyDataSetChanged()
     }
+
 }

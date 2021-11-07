@@ -1,5 +1,6 @@
 package com.smaher.tasktimerapp_pinkninjas
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,13 +13,15 @@ import com.smaher.tasktimerapp_pinkninjas.adapters.RVAdapter
 import com.smaher.tasktimerapp_pinkninjas.adapters.StatAdapter
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentHomeBinding
 import com.smaher.tasktimerapp_pinkninjas.databinding.FragmentStatisticsBinding
+import java.lang.String
+import java.util.concurrent.TimeUnit
 
 class StatisticsFragment : Fragment() {
     private lateinit var rvAdapter:StatAdapter
     private var _binding: FragmentStatisticsBinding? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     //declare tasks view model
     lateinit var myViewModel: TaskViewModel
 
@@ -53,6 +56,26 @@ class StatisticsFragment : Fragment() {
         binding.rvList.adapter = rvAdapter
         binding.rvList.layoutManager = GridLayoutManager(context,3)
     }
+
+    //Convert milliseconds into hour,minute and seconds
+    @SuppressLint("DefaultLocale")
+    fun timeFormat(millisUntilFinished: Long): kotlin.String {
+        return String.format(
+            "%02d:%02d:%02d",
+            TimeUnit.MILLISECONDS.toHours(millisUntilFinished),
+            TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(
+                TimeUnit.MILLISECONDS.toHours(
+                    millisUntilFinished
+                )
+            ),
+            TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(
+                TimeUnit.MILLISECONDS.toMinutes(
+                    millisUntilFinished
+                )
+            )
+        )
+    }
+
 
 
 }

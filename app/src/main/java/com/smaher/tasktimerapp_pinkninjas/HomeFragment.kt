@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
 
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -103,6 +104,7 @@ class HomeFragment : Fragment() {
             if(rvAdapter.currentTask.name!="empty") {
                 if(rvAdapter.isSelected()){
                     paused = if (paused) {
+                        rvAdapter.isActive=true
                         binding.nextImageView.isVisible=false
                         binding.previousImageView.isVisible=false
                         Toast.makeText(context, rvAdapter.currentTask.name,Toast.LENGTH_LONG).show()
@@ -110,6 +112,7 @@ class HomeFragment : Fragment() {
                         binding.playImageView.setImageResource(R.drawable.pause_button)
                         false
                     } else {
+                        rvAdapter.isActive=false
                         countdown_timer.cancel()
                         rvAdapter.currentTask.currentTime = myDBSeconds
                         myViewModel.updateTask(rvAdapter.currentTask)
