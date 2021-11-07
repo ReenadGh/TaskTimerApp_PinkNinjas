@@ -59,7 +59,7 @@ and we are proud of u as well !! so we made this page display all your plants wi
 https://user-images.githubusercontent.com/85634099/140648019-252264b4-c422-4d66-83d6-3ef61a02a523.mp4
 
 # CONFETTI
-you can't call it an app if it dosen't drown you in a sea of CONFETTI !
+You can't call it an app if it dosen't drown you in a sea of CONFETTI !
 
 once you complete any task a rain of confetti will start celebrating youe marvelous achievement :D
 
@@ -67,6 +67,8 @@ once you complete any task a rain of confetti will start celebrating youe marvel
 https://user-images.githubusercontent.com/85634099/140648731-a08f251d-4415-487a-bb09-aeaf1066a4ad.mp4
 
 
-
+# contributors
+Shoutout to the MARVELOUS PINK NINJAS !!
+[Reem ALHamed](https://github.com/ReemALHamed) -  [Safa Falaqi](https://github.com/safafalaqi) - [Reenad Alghofaili](https://github.com/ReenadGh) - [smaher alharthi](https://github.com/smaherHassanAlharthi)
 
 
