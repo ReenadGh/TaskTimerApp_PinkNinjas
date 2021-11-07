@@ -8,7 +8,14 @@
 
 Us ninjas are here with the amazing Task Planting App, which will help you gather all your tasks in one place and work in a fun way! Task-Planting will get u a brand new plant with every single task you add so make sure to take care of it ;) 
 
-#video
+
+
+
+
+https://user-images.githubusercontent.com/66906961/140656246-60b34424-6dd0-4c02-9a91-fba1efcbfd3c.mp4
+
+
+
 
 
 # Instructions
