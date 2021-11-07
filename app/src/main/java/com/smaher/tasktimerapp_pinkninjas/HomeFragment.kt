@@ -3,6 +3,8 @@ package com.smaher.tasktimerapp_pinkninjas
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -24,9 +26,13 @@ import java.util.concurrent.TimeUnit
 
 
 class HomeFragment : Fragment() {
+    private val sharedPrefFile = "kotlinsharedpreference"
+    private lateinit var sharedPreferences : SharedPreferences
+    lateinit var editor: SharedPreferences.Editor
     private lateinit var rvAdapter:RVAdapter
     private lateinit var animations :List<ObjectAnimator>
     var _binding: FragmentHomeBinding? = null
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     val binding get() = _binding!!
@@ -46,6 +52,25 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        //shared preferences to check if this is the first time the user opens the app
+        sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        editor=  sharedPreferences.edit()
+        val sharedIdValue = sharedPreferences.getBoolean("start_instruction",Constants.Start_Instruction)
+        if (sharedIdValue){
+            Toast.makeText(context, "value is $sharedIdValue",Toast.LENGTH_LONG).show()
+            //myscreen.visiblity = View.Visible
+            Constants.Start_Instruction=false
+            editor.putBoolean("start_instruction",Constants.Start_Instruction)
+            editor.apply()
+            editor.commit()
+        }else{
+            Constants.Start_Instruction=true
+            Toast.makeText(context, "value is $sharedIdValue",Toast.LENGTH_LONG).show()
+            //myscreen.visiblity = View.Gone
+        }
+
+
         var view: View
         //for binding view
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -110,7 +135,6 @@ class HomeFragment : Fragment() {
                         rvAdapter.isActive=true
                         binding.nextImageView.isVisible=false
                         binding.previousImageView.isVisible=false
-                        Toast.makeText(context, rvAdapter.currentTask.name,Toast.LENGTH_LONG).show()
                         startTimer(myDBSeconds)
                         binding.playImageView.setImageResource(R.drawable.pause_button)
                         false

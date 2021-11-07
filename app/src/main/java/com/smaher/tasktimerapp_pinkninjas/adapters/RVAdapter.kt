@@ -238,6 +238,8 @@ class RVAdapter(private val mainActivity: MainActivity, private val homeFragment
                 Constants.IMAGES_PLANT[1] -> { homeFragment.binding.characterImageView.setAnimation(Constants.IMAGES_PLANT[1]) }
                 Constants.IMAGES_PLANT[2] -> { homeFragment.binding.characterImageView.setAnimation(Constants.IMAGES_PLANT[2]) }
             }
+            homeFragment.binding.characterImageView.playAnimation()
+            homeFragment.binding.characterImageView.loop(true)
 
             checkSelected()
 
