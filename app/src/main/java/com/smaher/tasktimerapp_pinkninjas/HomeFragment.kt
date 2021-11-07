@@ -53,6 +53,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
+        var view: View
+        //for binding view
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        view = binding.root
+
+
+
         //shared preferences to check if this is the first time the user opens the app
         sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         editor=  sharedPreferences.edit()
@@ -60,21 +67,39 @@ class HomeFragment : Fragment() {
         if (sharedIdValue){
             Toast.makeText(context, "value is $sharedIdValue",Toast.LENGTH_LONG).show()
             //myscreen.visiblity = View.Visible
-            Constants.Start_Instruction=false
             editor.putBoolean("start_instruction",Constants.Start_Instruction)
             editor.apply()
             editor.commit()
+
+
+            var instructionImgs = arrayOf(R.drawable.inst_1,R.drawable.inst_2,R.drawable.inst_3,R.drawable.inst_4,R.drawable.inst_5,R.drawable.inst_6);
+            var index = 1
+            binding.instrutionImg.setOnClickListener {
+                binding.instrutionImg.setImageResource(instructionImgs[index]);
+                index++
+                if (index==instructionImgs.size){
+                    binding.instrutionImg.isVisible = false
+                    binding.homeLayout.isVisible = true
+
+
+                }
+            }
+
+            Constants.Start_Instruction=false
+
+
         }else{
-            Constants.Start_Instruction=true
-            Toast.makeText(context, "value is $sharedIdValue",Toast.LENGTH_LONG).show()
+           // Constants.Start_Instruction=true
+           // Toast.makeText(context, "value is $sharedIdValue",Toast.LENGTH_LONG).show()
             //myscreen.visiblity = View.Gone
-        }
+
+            binding.instrutionImg.isVisible = false
+            binding.homeLayout.isVisible = true
+
+            }
 
 
-        var view: View
-        //for binding view
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        view = binding.root
+
 
         /*when the fragment get the ViewModelProvider, it received the same
         SharedViewModel instance,*/
