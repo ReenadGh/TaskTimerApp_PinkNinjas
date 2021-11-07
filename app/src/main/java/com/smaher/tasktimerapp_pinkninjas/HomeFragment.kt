@@ -60,12 +60,12 @@ class HomeFragment : Fragment() {
 
 
 
+
         //shared preferences to check if this is the first time the user opens the app
         sharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         editor=  sharedPreferences.edit()
         val sharedIdValue = sharedPreferences.getBoolean("start_instruction",Constants.Start_Instruction)
         if (sharedIdValue){
-            Toast.makeText(context, "value is $sharedIdValue",Toast.LENGTH_LONG).show()
             //myscreen.visiblity = View.Visible
             editor.putBoolean("start_instruction",Constants.Start_Instruction)
             editor.apply()
@@ -81,12 +81,13 @@ class HomeFragment : Fragment() {
                     binding.instrutionImg.isVisible = false
                     binding.homeLayout.isVisible = true
 
-
                 }
             }
 
             Constants.Start_Instruction=false
-
+            editor.putBoolean("start_instruction",Constants.Start_Instruction)
+            editor.apply()
+            editor.commit()
 
         }else{
            // Constants.Start_Instruction=true

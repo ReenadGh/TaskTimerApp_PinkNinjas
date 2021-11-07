@@ -49,9 +49,12 @@ class AddTaskFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
 
                 when(position){
-                   0 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[0]) }
-                   1 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[1]) }
-                   2 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[2]) }
+                   0 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[0])
+                       type=IMAGES_PLANT[0]}
+                   1 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[1])
+                       type=IMAGES_PLANT[1]}
+                   2 -> { binding.plantImageAdd.setAnimation(IMAGES_PLANT[2])
+                       type=IMAGES_PLANT[2]}
                 }
 
                 binding.plantImageAdd.playAnimation()

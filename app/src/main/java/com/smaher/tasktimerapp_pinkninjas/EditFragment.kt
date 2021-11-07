@@ -53,9 +53,12 @@ class EditFragment : Fragment() {
         binding.plantPickerSPinnerEdit.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 when(position){
-                    0 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[0]) }
-                    1 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[1]) }
-                    2 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[2]) }
+                    0 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[0])
+                        type= Constants.IMAGES_PLANT[0]}
+                    1 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[1])
+                        type= Constants.IMAGES_PLANT[1]}
+                    2 -> { binding.plantImageEdit.setAnimation(Constants.IMAGES_PLANT[2])
+                        type= Constants.IMAGES_PLANT[2]}
                 }
 
                 binding.plantImageEdit.playAnimation()

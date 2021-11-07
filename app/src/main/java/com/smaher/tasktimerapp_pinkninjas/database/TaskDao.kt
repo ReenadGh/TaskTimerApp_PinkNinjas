@@ -12,6 +12,9 @@ interface TaskDao {
     @Query("SELECT * FROM Tasks ORDER BY id DESC")
     fun getTasks(): LiveData<List<Task>>
 
+    @Query("SELECT * FROM Tasks WHERE id =:id")
+    fun getOneTask(id :Int): Task
+
     @Update
     suspend fun updateTask(task: Task)
 
