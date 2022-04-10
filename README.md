@@ -68,7 +68,7 @@ https://user-images.githubusercontent.com/85634099/140648019-252264b4-c422-4d66-
 # CONFETTI
 You can't call it an app if it dosen't drown you in a sea of CONFETTI !
 
-once you complete any task a rain of confetti will start celebrating youe marvelous achievement :D
+once you complete any task a rain of confetti will start celebrating youe marvelous achievement  :D
 
 
 https://user-images.githubusercontent.com/85634099/140648731-a08f251d-4415-487a-bb09-aeaf1066a4ad.mp4
